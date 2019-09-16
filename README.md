@@ -1,4 +1,4 @@
-###SFWR TECH 4NN3 - Neural Networks and Deep Learning
+### SFWR TECH 4NN3 - Neural Networks and Deep Learning
 
 * Machine learning and deep learning. Single layer neural networks
 architecture and training.
