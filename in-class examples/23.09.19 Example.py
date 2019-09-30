@@ -1,3 +1,4 @@
+#%% 
 import numpy
 import math
 import random
@@ -32,10 +33,13 @@ w3 = numpy.transpose(numpy.array([random.random()-0.5, random.random()-0.5, rand
 
 for i in range(2000):
     # Forward Calculation
-    z1 = 1/(1 + math.exp(-numpy.dot(w1, X[i, :], w1)))
-    z2 = 1/(1 + math.exp(-numpy.dot(w1, X[i, :], w2)))
+    z1 = 1/(1 + math.exp(-numpy.dot(X[i, :], w1)))
+    z2 = 1/(1 + math.exp(-numpy.dot(X[i, :], w2)))
     # Input Vector for z3
     xhidden = [1, z1, z2]
     z3 = 1/(1 + math.exp(-numpy.dot(xhidden, w3)))
 
 print('DONE')
+
+
+#%%
