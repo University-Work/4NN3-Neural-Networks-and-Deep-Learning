@@ -1,6 +1,8 @@
 # Disable GPU in tensotflow-gpu - https://stackoverflow.com/a/44552793/11511781
-# import os
-# os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+import os
+os.environ["CUDA_VISIBLE_DEVICES"]="-1"
+# Just disables the warning, doesn't enable AVX/FMA
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 import tensorflow as tf
 import numpy
@@ -23,8 +25,8 @@ X = numpy.concatenate((numpy.ones((2000, 1)), X), axis=1)
 Xc = numpy.zeros(1000)
 Xc = numpy.concatenate((Xc, numpy.ones(1000)))
 
-data_holder = tf.placeholder(tf.float32, shape=[None, 2])
-label_holder = tf.placeholder(tf.float32, shape=[None, 2])
+data_holder = tf.placeholder(tf.float32)
+label_holder = tf.placeholder(tf.float32)
 
 hid_nodes = 2
 out_nodes = 1
@@ -63,11 +65,12 @@ optimizer = tf.train.GradientDescentOptimizer(alpha).minimize(loss)
 init = tf.global_variables_initializer()
 
 # Allocate GPU Memory - OMIT IF NOT RUNNING ON GPU
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
+# config = tf.ConfigProto()
+# config.gpu_options.allow_growth = True
 
 # Create tensorflow Session
-sess = tf.Session(config=config)
+# sess = tf.Session(config=config)
+sess = tf.Session()
 sess.run(init)  # performs initialization
 
 # EVERYTHING BEFORE THIS IS SETUP
