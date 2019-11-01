@@ -1,0 +1,22 @@
+{
+	"name": "4NN3 Dev Container",
+	// Sets the run context to one level up instead of the .devcontainer folder.
+	"context": "..",
+	// "dockerFile": "../Dockerfile",
+	"image": "4nn3-mcmaster",
+
+	"runArgs": [
+		// See https://aka.ms/vscode-remote/containers/non-root-user
+		// "-u", "yury.stanev"
+		"--env", "HOME=/home/yury.stanev/"
+	],
+
+	"settings": {
+		"terminal.integrated.shell.linux": null
+	},
+
+	"workspaceMount": "src=${localWorkspaceFolder}/,dst=/home/yury.stanev/,type=bind,consistency=delegated",
+	"workspaceFolder": "/home/yury.stanev/",
+
+	"extensions": ["ms-python.python", "eamodio.gitlens"]
+}
