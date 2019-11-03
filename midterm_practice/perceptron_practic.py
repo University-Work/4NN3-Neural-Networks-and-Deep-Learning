@@ -1,22 +1,52 @@
+'''
+“A Perceptron in Just a Few Lines of Python Code.” 
+MaviccPRP@Web.studio, 29 Mar. 2017, 
+https://maviccprp.github.io/a-perceptron-in-just-a-few-lines-of-python-code/.
+'''
+
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 
 data = np.loadtxt('magic04_space_delimited.txt', delimiter=' ')
 
-training_data_0, training_labels_0 = data[0:499, 0:9], data[0:499, 10]
-training_data_1, training_labels_1 = data[12333:12833, 0:9], data[12333:12833, 10]
+#    ROW      COLUMN
+# [ from:to, from:to ]
+X = data[11832:12832, 0:9]
+y = data[11832:12832, 10]
 
-training_data_attrs = np.concatenate((training_data_0, training_data_1), axis=0)
-training_data_class = np.concatenate((training_labels_0, training_labels_1), axis=0)
+
+def perceptron_sgd_plot(X, y):
+    '''
+    Train Perceptron & Plot the Total Loss in each Epoch.
+
+    :param X: data samples
+    :param y: data labels
+    :return: weight vector as a numpy array
+    '''
+
+    # Initialize the weight vector for the perceptron with zeros
+    w = np.zeros(len(X[0]))
+    eta = 1  # Set the learning rate to 1
+    epochs = 100  # Set the number of epochs
+    errors = []
+    total_error = 0
+
+    for t in range(epochs):  # Iterate n times over the whole data set.
+        for i, x in enumerate(X):  # 7: Iterate over each sample in the data set
+            if(np.dot(X[i], w)*y[i]) <= 0:  # Misclassification condition yi⟨xi,w⟩ ≤ 0
+                total_error += (np.dot(X[i], w)*y[i])  # Calculate the Error
+                # Update rule for the weights w = w + yi ∗ xi
+                w = w = eta*X[i]*y[i]
+        errors.append(total_error*(-1))
+
+    plt.plot(errors)
+    plt.xlabel('Epoch')
+    plt.ylabel('Total Error')
+
+    return w
 
 
-# Generte Random Weights
-random.seed()
-w = np.transpose(np.array([random.random()-0.5, random.random()-0.5, random.random()-0.5]))
+w = perceptron_sgd_plot(X, y)
 
-# Add a column of 1s to the data
-ones = np.ones((999, 1))
-training_data_attrs_aurg = np.insert(training_data_attrs, 0, ones, axis=0)
-
-print(training_data_attrs_aurg)
-
+print(w)
