@@ -25,8 +25,10 @@ X = numpy.concatenate((numpy.ones((2000, 1)), X), axis=1)
 Xc = numpy.zeros(1000)
 Xc = numpy.concatenate((Xc, numpy.ones(1000)))
 
-data_holder = tf.placeholder(tf.float32)
-label_holder = tf.placeholder(tf.float32)
+# data_holder = tf.placeholder(tf.float32)
+# label_holder = tf.placeholder(tf.float32)
+data_holder = tf.placeholder(tf.float32, shape=[None, 2])
+label_holder = tf.placeholder(tf.float32, shape=[None, 2])
 
 hid_nodes = 2
 out_nodes = 1
