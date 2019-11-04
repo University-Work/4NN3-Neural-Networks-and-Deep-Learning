@@ -19,12 +19,12 @@ X = np.concatenate((np.ones((1000, 1)), X), axis=1)
 
 def mlp(X, y):
     # Initialize thr weights
-    w1 = np.zeros(len(X[0]))
-    w2 = np.zeros(len(X[0]))
-    w3 = np.zeros(len(X[0]))
-    w4 = np.zeros(len(X[0]))
-    w5 = np.zeros(len(X[0]))
-    w6 = np.zeros(len(X[0]))
+    w1 = np.transpose(np.zeros(len(X[0])))
+    w2 = np.transpose(np.zeros(len(X[0])))
+    w3 = np.transpose(np.zeros(len(X[0])))
+    w4 = np.transpose(np.zeros(len(X[0])))
+    w5 = np.transpose(np.zeros(len(X[0])))
+    w6 = np.transpose(np.zeros(len(X[0])))
 
     alpha = 0.25  # Based on Optimization Theory
     outputError = np.empty((2000, 1))
