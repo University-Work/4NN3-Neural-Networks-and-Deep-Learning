@@ -14,7 +14,7 @@ x1 = numpy.random.multivariate_normal(mean1, cov, 1000)
 matplotlib.pyplot.scatter(x1[:, 0], x1[:, 1], c='b', marker='.')
 x2 = numpy.random.multivariate_normal(mean2, cov, 1000)
 matplotlib.pyplot.scatter(x2[:, 0], x2[:, 1], c='r', marker='.')
-matplotlib.pyplot.ion()
+# matplotlib.pyplot.ion()
 matplotlib.pyplot.show()
 
 X = numpy.concatenate((x1, x2))
@@ -39,7 +39,7 @@ for epoch in range(2000):
         z1 = 1 / (1 + math.exp(-numpy.dot(X[i, :], w1)))
         z2 = 1 / (1 + math.exp(-numpy.dot(X[i, :], w2)))
         # Input Vector for z3
-        xhidden = [1, z1, z2]
+        xhidden = [1, z1, z2] # 1 is added for bias
         z3 = 1 / (1 + math.exp(-numpy.dot(xhidden, w3)))
 
         # Prediction
