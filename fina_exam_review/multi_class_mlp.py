@@ -121,5 +121,9 @@ for epoch in range(500):
         w19 = w19 + [alpha*error19, alpha*error19*z1, alpha*error19*z2, alpha*error19*z3]
         w20 = w20 + [alpha*error20, alpha*error20*z1, alpha*error20*z2, alpha*error20*z3]
 
-print("Iteration...", epoch+1, "Error = ", totalError, "     ", end = '\r', flush = True)
-epochError[epoch] = totalError
+    print("Iteration...", epoch+1, "Error = ", totalError, "     ", end = '\r', flush = True)
+    epochError[epoch] = totalError
+
+plt.plot(epochError)
+plt.show()
+print('\nDONE')
